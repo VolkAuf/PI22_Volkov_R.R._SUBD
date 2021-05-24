@@ -14,15 +14,15 @@ using WarehouseBusinessLogic.ViewModels;
 
 namespace WarehouseView
 {
-    public partial class FormExpenseStatement : Form
+    public partial class FormReceiptStatement : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
         public int Id { set => id = value; }
-        private readonly ExpenseStatementLogic logic;
+        private readonly ReceiptStatementLogic logic;
         private int? id;
-        private Dictionary<int, (string, int, int)> ExpenseStatementProducts;
-        public FormExpenseStatement(ExpenseStatementLogic service)
+        private Dictionary<int, (string, int, int)> ReceiptStatementProducts;
+        public FormReceiptStatement(ReceiptStatementLogic service)
         {
             InitializeComponent();
             logic = service;
@@ -33,11 +33,11 @@ namespace WarehouseView
             {
                 try
                 {
-                    ExpenseStatementViewModel view = logic.Read(new ExpenseStatementBindingModel { Id = id.Value })?[0];
+                    ReceiptStatementViewModel view = logic.Read(new ReceiptStatementBindingModel { Id = id.Value })?[0];
                     if (view != null)
                     {
-                        textBoxName.Text = view.Customer;
-                        ExpenseStatementProducts = view.ExpenseStatementProducts;
+                        textBoxName.Text = view.Provider;
+                        ReceiptStatementProducts = view.ReceiptStatementProducts;
                         LoadData();
                     }
                 }
@@ -48,17 +48,17 @@ namespace WarehouseView
             }
             else
             {
-                ExpenseStatementProducts = new Dictionary<int, (string, int, int)>();
+                ReceiptStatementProducts = new Dictionary<int, (string, int, int)>();
             }
         }
         private void LoadData()
         {
             try
             {
-                if (ExpenseStatementProducts != null)
+                if (ReceiptStatementProducts != null)
                 {
                     dataGridView.Rows.Clear();
-                    foreach (KeyValuePair<int, (string, int, int)> esp in ExpenseStatementProducts)
+                    foreach (KeyValuePair<int, (string, int, int)> esp in ReceiptStatementProducts)
                     {
                         dataGridView.Rows.Add(new object[] { esp.Key, esp.Value.Item1, esp.Value.Item2, esp.Value.Item3 });
                     }
@@ -71,16 +71,16 @@ namespace WarehouseView
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormExpenseStatementProducts>();
+            var form = Container.Resolve<FormReceiptStatementProducts>();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (ExpenseStatementProducts.ContainsKey(form.Id))
+                if (ReceiptStatementProducts.ContainsKey(form.Id))
                 {
-                    ExpenseStatementProducts[form.Id] = (form.ProductName, form.Count, form.Price);
+                    ReceiptStatementProducts[form.Id] = (form.ProductName, form.Count, form.Price);
                 }
                 else
                 {
-                    ExpenseStatementProducts.Add(form.Id, (form.ProductName, form.Count, form.Price));
+                    ReceiptStatementProducts.Add(form.Id, (form.ProductName, form.Count, form.Price));
                 }
                 LoadData();
             }
@@ -89,13 +89,13 @@ namespace WarehouseView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormExpenseStatementProducts>();
+                var form = Container.Resolve<FormReceiptStatementProducts>();
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 form.Id = id;
-                form.Count = ExpenseStatementProducts[id].Item2;
+                form.Count = ReceiptStatementProducts[id].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    ExpenseStatementProducts[form.Id] = (form.ProductName, form.Count, form.Price);
+                    ReceiptStatementProducts[form.Id] = (form.ProductName, form.Count, form.Price);
                     LoadData();
                 }
             }
@@ -108,7 +108,7 @@ namespace WarehouseView
                 {
                     try
                     {
-                        ExpenseStatementProducts.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
+                        ReceiptStatementProducts.Remove(Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value));
                     }
                     catch (Exception ex)
                     {
@@ -129,18 +129,18 @@ namespace WarehouseView
                 MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (ExpenseStatementProducts == null || ExpenseStatementProducts.Count == 0)
+            if (ReceiptStatementProducts == null || ReceiptStatementProducts.Count == 0)
             {
                 MessageBox.Show("Заполните компоненты", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                logic.CreateOrUpdate(new ExpenseStatementBindingModel
+                logic.CreateOrUpdate(new ReceiptStatementBindingModel
                 {
                     Id = id,
-                    Customer = textBoxName.Text,
-                    ExpenseStatementProducts = ExpenseStatementProducts
+                    Provider = textBoxName.Text,
+                    ReceiptStatementProducts = ReceiptStatementProducts
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;

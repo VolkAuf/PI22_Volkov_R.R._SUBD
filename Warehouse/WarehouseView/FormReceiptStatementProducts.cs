@@ -13,7 +13,7 @@ using WarehouseBusinessLogic.ViewModels;
 
 namespace WarehouseView
 {
-    public partial class FormExpenseStatementProducts : Form
+    public partial class FormReceiptStatementProducts : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
@@ -21,7 +21,7 @@ namespace WarehouseView
         public string ProductName => comboBoxProduct.Text;
         public int Count { get => Convert.ToInt32(textBoxCount.Text); set => textBoxCount.Text = value.ToString(); }
         public int Price { get => Convert.ToInt32(textBoxPrice.Text); set => textBoxPrice.Text = value.ToString(); }
-        public FormExpenseStatementProducts(ProductLogic logic)
+        public FormReceiptStatementProducts(ProductLogic logic)
         {
             InitializeComponent();
             List<ProductViewModel> list = logic.Read(null);

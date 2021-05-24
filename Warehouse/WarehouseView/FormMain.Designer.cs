@@ -32,6 +32,7 @@ namespace WarehouseView
             this.buttonGroupps = new System.Windows.Forms.Button();
             this.buttonProducts = new System.Windows.Forms.Button();
             this.buttonExpenseStatements = new System.Windows.Forms.Button();
+            this.buttonReceiptStatements = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonGroupps
@@ -64,11 +65,22 @@ namespace WarehouseView
             this.buttonExpenseStatements.UseVisualStyleBackColor = true;
             this.buttonExpenseStatements.Click += new System.EventHandler(this.buttonExpenseStatements_Click);
             // 
+            // buttonReceiptStatements
+            // 
+            this.buttonReceiptStatements.Location = new System.Drawing.Point(387, 11);
+            this.buttonReceiptStatements.Name = "buttonReceiptStatements";
+            this.buttonReceiptStatements.Size = new System.Drawing.Size(152, 28);
+            this.buttonReceiptStatements.TabIndex = 4;
+            this.buttonReceiptStatements.Text = "ReceiptStatements";
+            this.buttonReceiptStatements.UseVisualStyleBackColor = true;
+            this.buttonReceiptStatements.Click += new System.EventHandler(this.buttonReceiptStatements_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonReceiptStatements);
             this.Controls.Add(this.buttonExpenseStatements);
             this.Controls.Add(this.buttonProducts);
             this.Controls.Add(this.buttonGroupps);
@@ -83,5 +95,6 @@ namespace WarehouseView
         private System.Windows.Forms.Button buttonGroupps;
         private System.Windows.Forms.Button buttonProducts;
         private System.Windows.Forms.Button buttonExpenseStatements;
+        private System.Windows.Forms.Button buttonReceiptStatements;
     }
 }

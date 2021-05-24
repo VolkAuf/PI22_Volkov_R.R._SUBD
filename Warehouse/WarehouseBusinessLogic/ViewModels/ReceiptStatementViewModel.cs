@@ -14,5 +14,7 @@ namespace WarehouseBusinessLogic.ViewModels
 
         [DisplayName("Поставщик")]
         public string Provider { get; set; }
+
+        public Dictionary<int, (string, int, int)> ReceiptStatementProducts { get; set; }
     }
 }

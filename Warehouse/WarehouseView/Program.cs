@@ -29,8 +29,12 @@ namespace WarehouseView
             var currentContainer = new UnityContainer();
             currentContainer.RegisterType<IGrouppStorage, GrouppStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IProductStorage, ProductStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IExpenseStatementStorage, ExpenseStatementStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReceiptStatementStorage, ReceiptStatementStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<GrouppLogic>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ProductStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ProductLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ExpenseStatementLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ReceiptStatementLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

@@ -195,6 +195,24 @@
     <Compile Include="FormProducts.Designer.cs">
       <DependentUpon>FormProducts.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReceiptStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReceiptStatement.Designer.cs">
+      <DependentUpon>FormReceiptStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReceiptStatementProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReceiptStatementProducts.Designer.cs">
+      <DependentUpon>FormReceiptStatementProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReceiptStatements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReceiptStatements.Designer.cs">
+      <DependentUpon>FormReceiptStatements.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormExpenseStatement.resx">
@@ -220,6 +238,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProducts.resx">
       <DependentUpon>FormProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReceiptStatement.resx">
+      <DependentUpon>FormReceiptStatement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReceiptStatementProducts.resx">
+      <DependentUpon>FormReceiptStatementProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReceiptStatements.resx">
+      <DependentUpon>FormReceiptStatements.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
