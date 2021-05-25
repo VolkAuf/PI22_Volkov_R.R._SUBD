@@ -11,6 +11,8 @@ namespace WarehouseBusinessLogic.Interfaces
         List<ProductViewModel> GetFullList();
         List<ProductViewModel> GetFilteredList(ProductBindingModel model);
         ProductViewModel GetElement(ProductBindingModel model);
+        List<ProductExpenseQueryViewModel> GetQueryExpensesList();
+        List<ProductReceiptQueryViewModel> GetQueryReceiptsList();
         void Insert(ProductBindingModel model);
         void Update(ProductBindingModel model);
         void Delete(ProductBindingModel model);

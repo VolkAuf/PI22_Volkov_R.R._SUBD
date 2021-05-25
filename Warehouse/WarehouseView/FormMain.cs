@@ -44,5 +44,11 @@ namespace WarehouseView
             var form = Container.Resolve<FormReceiptStatements>();
             form.ShowDialog();
         }
+
+        private void buttonQuery_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormQuery>();
+            form.ShowDialog();
+        }
     }
 }

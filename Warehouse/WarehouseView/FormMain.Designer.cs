@@ -33,6 +33,7 @@ namespace WarehouseView
             this.buttonProducts = new System.Windows.Forms.Button();
             this.buttonExpenseStatements = new System.Windows.Forms.Button();
             this.buttonReceiptStatements = new System.Windows.Forms.Button();
+            this.buttonQuery = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonGroupps
@@ -75,11 +76,22 @@ namespace WarehouseView
             this.buttonReceiptStatements.UseVisualStyleBackColor = true;
             this.buttonReceiptStatements.Click += new System.EventHandler(this.buttonReceiptStatements_Click);
             // 
+            // buttonQuery
+            // 
+            this.buttonQuery.Location = new System.Drawing.Point(563, 11);
+            this.buttonQuery.Name = "buttonQuery";
+            this.buttonQuery.Size = new System.Drawing.Size(120, 28);
+            this.buttonQuery.TabIndex = 5;
+            this.buttonQuery.Text = "Query";
+            this.buttonQuery.UseVisualStyleBackColor = true;
+            this.buttonQuery.Click += new System.EventHandler(this.buttonQuery_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonQuery);
             this.Controls.Add(this.buttonReceiptStatements);
             this.Controls.Add(this.buttonExpenseStatements);
             this.Controls.Add(this.buttonProducts);
@@ -96,5 +108,6 @@ namespace WarehouseView
         private System.Windows.Forms.Button buttonProducts;
         private System.Windows.Forms.Button buttonExpenseStatements;
         private System.Windows.Forms.Button buttonReceiptStatements;
+        private System.Windows.Forms.Button buttonQuery;
     }
 }

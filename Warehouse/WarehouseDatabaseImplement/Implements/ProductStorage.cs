@@ -155,5 +155,63 @@ namespace WarehouseDatabaseImplement.Implements
             }
             return product;
         }
+
+        public List<ProductExpenseQueryViewModel> GetQueryExpensesList()
+        {
+            using (WarehouseDatabase context = new WarehouseDatabase())
+            {
+                var products = context.Product
+                .Include(rec => rec.Expensestatementproduct)
+                .ThenInclude(rec => rec.Expensestatement)
+                .ToList();
+
+                var list = new List<ProductExpenseQueryViewModel>();
+                foreach(var product in products)
+                {
+                    foreach (var pr in product.Expensestatementproduct) 
+                    {
+                        list.Add(new ProductExpenseQueryViewModel
+                        {
+                            Name = product.Name,
+                            Price = product.Price,
+                            Customer = pr.Expensestatement.Customer,
+                            PriceExpense = pr.Price,
+                            DateDeparture = pr.Expensestatement.Datedeparture,
+                            CountExpense = pr.Count
+                        });
+                    }
+                }
+                return list;
+            }
+        }
+
+        public List<ProductReceiptQueryViewModel> GetQueryReceiptsList()
+        {
+            using (WarehouseDatabase context = new WarehouseDatabase())
+            {
+                var products = context.Product
+                .Include(rec => rec.Receiptstatementproduct)
+                .ThenInclude(rec => rec.Receiptstatement)
+                .ToList();
+
+                var list = new List<ProductReceiptQueryViewModel>();
+                foreach (var product in products)
+                {
+                    foreach (var pr in product.Receiptstatementproduct)
+                    {
+                        list.Add(new ProductReceiptQueryViewModel
+                        {
+                            Name = product.Name,
+                            Price = product.Price,
+                            Provider = pr.Receiptstatement.Provider,
+                            PriceReceipt = pr.Price,
+                            DateArrival = pr.Receiptstatement.Datearrival,
+                            CountReceipt = pr.Count
+                        });
+                    }
+                }
+                return list;
+            }
+        }
     }
 }
