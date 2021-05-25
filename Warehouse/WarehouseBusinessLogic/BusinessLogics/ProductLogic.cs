@@ -34,6 +34,14 @@ namespace WarehouseBusinessLogic.BusinessLogics
         {
             return _productStorage.GetQueryReceiptsList();
         }
+        public List<DocumentReceiptViewModel> ReadDocReceipt()
+        {
+            return _productStorage.GetDocReceipt();
+        }
+        public List<DocumentExpensesViewModel> ReadDocExpenses()
+        {
+            return _productStorage.GetDocExpenses();
+        }
         public void CreateOrUpdate(ProductBindingModel model)
         {
             if (model.Id.HasValue)

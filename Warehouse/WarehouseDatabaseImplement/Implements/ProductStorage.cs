@@ -213,5 +213,65 @@ namespace WarehouseDatabaseImplement.Implements
                 return list;
             }
         }
+
+        public List<DocumentReceiptViewModel> GetDocReceipt()
+        {
+            using (WarehouseDatabase context = new WarehouseDatabase())
+            {
+                var products = context.Product
+                .Include(rec => rec.Receiptstatementproduct)
+                .ThenInclude(rec => rec.Receiptstatement)
+                .ToList();
+
+                var list = new List<DocumentReceiptViewModel>();
+                foreach (var product in products)
+                {
+                    foreach (var pr in product.Receiptstatementproduct)
+                    {
+                        list.Add(new DocumentReceiptViewModel
+                        {
+                            ProductName = product.Name,
+                            ProductPrice = product.Price,
+                            ProductCount = product.Count,
+                            Provider = pr.Receiptstatement.Provider,
+                            Price = pr.Price,
+                            DateArrival = pr.Receiptstatement.Datearrival,
+                            Count = pr.Count
+                        });
+                    }
+                }
+                return list;
+            }
+        }
+
+        public List<DocumentExpensesViewModel> GetDocExpenses()
+        {
+            using (WarehouseDatabase context = new WarehouseDatabase())
+            {
+                var products = context.Product
+                .Include(rec => rec.Expensestatementproduct)
+                .ThenInclude(rec => rec.Expensestatement)
+                .ToList();
+
+                var list = new List<DocumentExpensesViewModel>();
+                foreach (var product in products)
+                {
+                    foreach (var pr in product.Expensestatementproduct)
+                    {
+                        list.Add(new DocumentExpensesViewModel
+                        {
+                            ProductName = product.Name,
+                            ProductPrice = product.Price,
+                            ProductCount = product.Count,
+                            Customer = pr.Expensestatement.Customer,
+                            Price = pr.Price,
+                            DateDeparture = pr.Expensestatement.Datedeparture,
+                            Count = pr.Count
+                        });
+                    }
+                }
+                return list;
+            }
+        }
     }
 }
