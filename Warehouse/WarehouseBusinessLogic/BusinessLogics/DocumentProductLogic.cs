@@ -11,11 +11,14 @@ namespace WarehouseBusinessLogic.BusinessLogics
     {
         private readonly IDocumentProductStorage documentProductStorage;
         private readonly IDocumentProductStorageRedis documentProductStorageRedis;
+        private readonly IProductStorage productStorage;
 
-        public DocumentProductLogic(IDocumentProductStorage documentProductStorage, IDocumentProductStorageRedis documentProductStorageRedis)
+        public DocumentProductLogic(IDocumentProductStorage documentProductStorage, IDocumentProductStorageRedis documentProductStorageRedis,
+            IProductStorage productStorage)
         {
             this.documentProductStorageRedis = documentProductStorageRedis;
             this.documentProductStorage = documentProductStorage;
+            this.productStorage = productStorage;
         }
 
         public List<DocumentProductViewModel> Read(DocumentProductBindingModel model)
@@ -48,7 +51,7 @@ namespace WarehouseBusinessLogic.BusinessLogics
         public void UpdateCashe()
         {
             documentProductStorageRedis.DeleteAll();
-            var pgsql = documentProductStorage.GetFullList();
+            var pgsql = productStorage.GetFullList();
             foreach (var product in pgsql)
             {
                 documentProductStorageRedis.InsertOrUpdate(new DocumentProductBindingModel

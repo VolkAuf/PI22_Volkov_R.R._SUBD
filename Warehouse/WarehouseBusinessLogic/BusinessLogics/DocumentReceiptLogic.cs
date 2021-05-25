@@ -11,11 +11,14 @@ namespace WarehouseBusinessLogic.BusinessLogics
     {
         private readonly IDocumentReceiptStorage documentReceiptStorage;
         private readonly IDocumentReceiptStorageRedis documentReceiptStorageRedis;
+        private readonly IProductStorage productStorage;
 
-        public DocumentReceiptLogic(IDocumentReceiptStorage documentReceiptStorage, IDocumentReceiptStorageRedis documentReceiptStorageRedis)
+        public DocumentReceiptLogic(IDocumentReceiptStorage documentReceiptStorage, IDocumentReceiptStorageRedis documentReceiptStorageRedis,
+            IProductStorage productStorage)
         {
             this.documentReceiptStorageRedis = documentReceiptStorageRedis;
             this.documentReceiptStorage = documentReceiptStorage;
+            this.productStorage = productStorage;
         }
 
         public List<DocumentReceiptViewModel> Read(DocumentReceiptBindingModel model)
@@ -48,7 +51,7 @@ namespace WarehouseBusinessLogic.BusinessLogics
         public void UpdateCashe()
         {
             documentReceiptStorageRedis.DeleteAll();
-            var pgsql = documentReceiptStorage.GetFullList();
+            var pgsql = productStorage.GetDocReceipt();
             foreach (var product in pgsql)
             {
                 documentReceiptStorageRedis.InsertOrUpdate(new DocumentReceiptBindingModel

@@ -34,6 +34,10 @@ namespace WarehouseView
             this.buttonExpenseStatements = new System.Windows.Forms.Button();
             this.buttonReceiptStatements = new System.Windows.Forms.Button();
             this.buttonQuery = new System.Windows.Forms.Button();
+            this.buttonTransfer = new System.Windows.Forms.Button();
+            this.buttonRedicProduct = new System.Windows.Forms.Button();
+            this.buttonRedicExpenses = new System.Windows.Forms.Button();
+            this.buttonRedicReceipt = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonGroupps
@@ -86,11 +90,55 @@ namespace WarehouseView
             this.buttonQuery.UseVisualStyleBackColor = true;
             this.buttonQuery.Click += new System.EventHandler(this.buttonQuery_Click);
             // 
+            // buttonTransfer
+            // 
+            this.buttonTransfer.Location = new System.Drawing.Point(13, 55);
+            this.buttonTransfer.Name = "buttonTransfer";
+            this.buttonTransfer.Size = new System.Drawing.Size(110, 28);
+            this.buttonTransfer.TabIndex = 6;
+            this.buttonTransfer.Text = "Transfer";
+            this.buttonTransfer.UseVisualStyleBackColor = true;
+            this.buttonTransfer.Click += new System.EventHandler(this.buttonTransfer_Click);
+            // 
+            // buttonRedicProduct
+            // 
+            this.buttonRedicProduct.Location = new System.Drawing.Point(198, 55);
+            this.buttonRedicProduct.Name = "buttonRedicProduct";
+            this.buttonRedicProduct.Size = new System.Drawing.Size(116, 28);
+            this.buttonRedicProduct.TabIndex = 7;
+            this.buttonRedicProduct.Text = "RedicProduct";
+            this.buttonRedicProduct.UseVisualStyleBackColor = true;
+            this.buttonRedicProduct.Click += new System.EventHandler(this.buttonRedicProduct_Click);
+            // 
+            // buttonRedicExpenses
+            // 
+            this.buttonRedicExpenses.Location = new System.Drawing.Point(368, 55);
+            this.buttonRedicExpenses.Name = "buttonRedicExpenses";
+            this.buttonRedicExpenses.Size = new System.Drawing.Size(125, 28);
+            this.buttonRedicExpenses.TabIndex = 8;
+            this.buttonRedicExpenses.Text = "RedicExpenses";
+            this.buttonRedicExpenses.UseVisualStyleBackColor = true;
+            this.buttonRedicExpenses.Click += new System.EventHandler(this.buttonRedicExpenses_Click);
+            // 
+            // buttonRedicReceipt
+            // 
+            this.buttonRedicReceipt.Location = new System.Drawing.Point(562, 55);
+            this.buttonRedicReceipt.Name = "buttonRedicReceipt";
+            this.buttonRedicReceipt.Size = new System.Drawing.Size(121, 28);
+            this.buttonRedicReceipt.TabIndex = 9;
+            this.buttonRedicReceipt.Text = "RedicReceipt";
+            this.buttonRedicReceipt.UseVisualStyleBackColor = true;
+            this.buttonRedicReceipt.Click += new System.EventHandler(this.buttonRedicReceipt_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(695, 450);
+            this.Controls.Add(this.buttonRedicReceipt);
+            this.Controls.Add(this.buttonRedicExpenses);
+            this.Controls.Add(this.buttonRedicProduct);
+            this.Controls.Add(this.buttonTransfer);
             this.Controls.Add(this.buttonQuery);
             this.Controls.Add(this.buttonReceiptStatements);
             this.Controls.Add(this.buttonExpenseStatements);
@@ -109,5 +157,9 @@ namespace WarehouseView
         private System.Windows.Forms.Button buttonExpenseStatements;
         private System.Windows.Forms.Button buttonReceiptStatements;
         private System.Windows.Forms.Button buttonQuery;
+        private System.Windows.Forms.Button buttonTransfer;
+        private System.Windows.Forms.Button buttonRedicProduct;
+        private System.Windows.Forms.Button buttonRedicExpenses;
+        private System.Windows.Forms.Button buttonRedicReceipt;
     }
 }

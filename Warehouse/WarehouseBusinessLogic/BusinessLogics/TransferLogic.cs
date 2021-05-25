@@ -49,8 +49,8 @@ namespace WarehouseBusinessLogic.BusinessLogics
                 {
                     var prod = new Product();
                     prod.Name = expens.ProductName;
-                    prod.Price = expens.Price;
-                    prod.Count = expens.Count;
+                    prod.Price = expens.ProductPrice;
+                    prod.Count = expens.ProductCount;
                     prod.GrouppName = expens.GrouppName;
                     await DbTransferToMongoLogic.SaveExpenses(new ExpensesDocumentModel
                     {

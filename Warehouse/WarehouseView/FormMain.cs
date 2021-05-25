@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
+using WarehouseBusinessLogic.BusinessLogics;
 
 namespace WarehouseView
 {
@@ -15,9 +16,18 @@ namespace WarehouseView
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
+        private readonly TransferLogic transferLogic;
+        private readonly DocumentExpensesLogic documentExpensesLogic;
+        private readonly DocumentProductLogic documentProductLogic;
+        private readonly DocumentReceiptLogic documentReceiptLogic;
 
-        public FormMain()
+        public FormMain(TransferLogic transferLogic, DocumentExpensesLogic documentExpensesLogic,
+            DocumentProductLogic documentProductLogic, DocumentReceiptLogic documentReceiptLogic)
         {
+            this.transferLogic = transferLogic;
+            this.documentProductLogic = documentProductLogic;
+            this.documentExpensesLogic = documentExpensesLogic;
+            this.documentReceiptLogic = documentReceiptLogic;
             InitializeComponent();
         }
 
@@ -49,6 +59,26 @@ namespace WarehouseView
         {
             var form = Container.Resolve<FormQuery>();
             form.ShowDialog();
+        }
+
+        private void buttonTransfer_Click(object sender, EventArgs e)
+        {
+            transferLogic.TransferAll();
+        }
+
+        private void buttonRedicProduct_Click(object sender, EventArgs e)
+        {
+            documentProductLogic.UpdateCashe();
+        }
+
+        private void buttonRedicExpenses_Click(object sender, EventArgs e)
+        {
+            documentExpensesLogic.UpdateCashe();
+        }
+
+        private void buttonRedicReceipt_Click(object sender, EventArgs e)
+        {
+            documentReceiptLogic.UpdateCashe();
         }
     }
 }

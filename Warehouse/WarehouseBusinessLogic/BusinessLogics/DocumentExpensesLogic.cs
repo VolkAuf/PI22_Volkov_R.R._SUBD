@@ -11,11 +11,14 @@ namespace WarehouseBusinessLogic.BusinessLogics
     {
         private readonly IDocumentExpensesStorage documentExpensesStorage;
         private readonly IDocumentExpensesStorageRedis documentExpensesStorageRedis;
+        private readonly IProductStorage productStorage;
 
-        public DocumentExpensesLogic(IDocumentExpensesStorage documentExpensesStorage, IDocumentExpensesStorageRedis documentExpensesStorageRedis)
+        public DocumentExpensesLogic(IDocumentExpensesStorage documentExpensesStorage, IDocumentExpensesStorageRedis documentExpensesStorageRedis,
+            IProductStorage productStorage)
         {
             this.documentExpensesStorageRedis = documentExpensesStorageRedis;
             this.documentExpensesStorage = documentExpensesStorage;
+            this.productStorage = productStorage;
         }
 
         public List<DocumentExpensesViewModel> Read(DocumentExpensesBindingModel model)
@@ -27,7 +30,7 @@ namespace WarehouseBusinessLogic.BusinessLogics
                 {
                     return redisStorage;
                 }
-                return documentExpensesStorage.GetFullList();
+                return productStorage.GetDocExpenses();
             }
             if (model.Id.HasValue)
             {
@@ -48,7 +51,7 @@ namespace WarehouseBusinessLogic.BusinessLogics
         public void UpdateCashe()
         {
             documentExpensesStorageRedis.DeleteAll();
-            var pgsql = documentExpensesStorage.GetFullList();
+            var pgsql = productStorage.GetDocExpenses();
             foreach (var product in pgsql)
             {
                 documentExpensesStorageRedis.InsertOrUpdate(new DocumentExpensesBindingModel

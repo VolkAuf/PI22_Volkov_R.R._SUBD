@@ -219,6 +219,7 @@ namespace WarehouseDatabaseImplement.Implements
             using (WarehouseDatabase context = new WarehouseDatabase())
             {
                 var products = context.Product
+                .Include(rec => rec.Groupp)
                 .Include(rec => rec.Receiptstatementproduct)
                 .ThenInclude(rec => rec.Receiptstatement)
                 .ToList();
@@ -233,6 +234,7 @@ namespace WarehouseDatabaseImplement.Implements
                             ProductName = product.Name,
                             ProductPrice = product.Price,
                             ProductCount = product.Count,
+                            GrouppName = product.Groupp.Name,
                             Provider = pr.Receiptstatement.Provider,
                             Price = pr.Price,
                             DateArrival = pr.Receiptstatement.Datearrival,
@@ -249,6 +251,7 @@ namespace WarehouseDatabaseImplement.Implements
             using (WarehouseDatabase context = new WarehouseDatabase())
             {
                 var products = context.Product
+                .Include(rec => rec.Groupp)
                 .Include(rec => rec.Expensestatementproduct)
                 .ThenInclude(rec => rec.Expensestatement)
                 .ToList();
@@ -263,6 +266,7 @@ namespace WarehouseDatabaseImplement.Implements
                             ProductName = product.Name,
                             ProductPrice = product.Price,
                             ProductCount = product.Count,
+                            GrouppName = product.Groupp.Name,
                             Customer = pr.Expensestatement.Customer,
                             Price = pr.Price,
                             DateDeparture = pr.Expensestatement.Datedeparture,

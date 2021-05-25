@@ -31,10 +31,21 @@ namespace WarehouseView
             currentContainer.RegisterType<IProductStorage, ProductStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IExpenseStatementStorage, ExpenseStatementStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IReceiptStatementStorage, ReceiptStatementStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IDocumentExpensesStorageRedis, DocumentExpensesStorageRedis>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IDocumentReceiptStorageRedis, DocumentReceiptStorageRedis>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IDocumentProductStorageRedis, DocumentProductStorageRedis>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IDocumentProductStorage, DocumentProductStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IDocumentExpensesStorage, DocumentExpensesStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IDocumentReceiptStorage, DocumentReceiptStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<GrouppLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ProductLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ExpenseStatementLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ReceiptStatementLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<TransferLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<DocumentExpensesLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<DocumentProductLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<DocumentReceiptLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<DbTransferToMongoLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }
